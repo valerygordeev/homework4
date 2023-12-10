@@ -1,0 +1,154 @@
+Script started on Sun 10 Dec 2023 10:52:54 AM UTC
+^[]0;root@lvm:~^G^[[?1034h[root@lvm ~]# pvcreate /dev/sdc^H^[[K{}^Hs}^H,}^Hd}^H^H^H^H^[[1P,d}^H^H^Hc,d}^H^H^H^[[1Pd}^H^H^[[1P}^H^[[K^G^H^[[K^$
+  Physical volume "/dev/sdb" successfully created.
+^[]0;root@lvm:~^G[root@lvm ~]# gvce^H^[[Kreate^H^[[K^H^[[K^H^[[K^H^[[K^H^[[K^H^[[K^H^[[K^H^[[K^G^G^Ggvcreate vg_root /dev/sdb
+bash: gvcreate: command not found
+^[]0;root@lvm:~^G[root@lvm ~]# gvcreate vg_root /dev/sdb^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^[[1P^H^[[1P^[[1@v^[[1@g
+  Volume group "vg_root" successfully created
+^[]0;root@lvm:~^G[root@lvm ~]# ^M^[[K[root@lvm ~]# ^M^[[K[root@lvm ~]# lvcreate -n lv_root -l+100%FREE /dev/vg_root
+  Logical volume "lv_root" created.
+^[]0;root@lvm:~^G[root@lvm ~]# mk.^H^[[Kgs^H^[[K^H^[[Kfs.xfs /dev/vg_root/lv_root
+meta-data=/dev/vg_root/lv_root   isize=512    agcount=4, agsize=655104 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=0, sparse=0
+data     =                       bsize=4096   blocks=2620416, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log	 =internal log           bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+^[]0;root@lvm:~^G[root@lvm ~]# mount /dev/vg_root/lv_root /mnt
+^[]0;root@lvm:~^G[root@lvm ~]# xfssump -J - /dev/VolGroup00/Lo^GgVol00 | xfsrestore -L - /mnt
+bash: xfssump: command not found
+xfsrestore: ERROR: no source file(s) specified
+xfsrestore: usage: xfsrestore [ -a <alt. workspace dir> ... ]
+                              [ -b <blocksize> ]
+                              [ -c <media change alert program>  ]
+                              [ -e (don't overwrite existing files) ]
+                              [ -f <source> ... ]
+                              [ -h (help) ]
+                              [ -i (interactive) ]
+                              [ -m (force usage of minimal rmt) ]
+                              [ -n <file> (restore only if newer than) ]
+                              [ -o (restore owner/group even if not root) ]
+                              [ -p <seconds between progress reports> ]
+                              [ -q <use QIC tape settings> ]
+                              [ -r (cumulative restore) ]
+                              [ -s <subtree> ... ]
+                              [ -t (contents only) ]
+                              [ -v <verbosity {silent, verbose, trace}> ]
+                              [ -w (use small tree window) ]
+                              [ -A (don't restore extended file attributes) ]
+                              [ -B (restore root dir owner/permissions) ]
+                              [ -D (restore DMAPI event settings) ]
+                              [ -E (don't overwrite if changed) ]
+                              [ -F (don't prompt) ]
+                              [ -I (display dump inventory) ]
+                              [ -J (inhibit inventory update) ]
+                              [ -K (force use of format 2 generation numbers) ]
+                              [ -L <session label> ]
+                              [ -O <options file> ]
+                              [ -Q (force interrupted session completion) ]
+                              [ -R (resume) ]
+                              [ -S <session id> ]
+                              [ -T (don't timeout dialogs) ]
+                              [ -X <excluded subtree> ... ]
+                              [ -Y <I/O buffer ring length> ]
+                              [ - (stdin) ]
+                              [ <destination> ]
+xfsrestore: Restore Status: ERROR
+^[]0;root@lvm:~^G[root@lvm ~]# xfssump -J - /dev/VolGroup00/LogVol00 | xfsrestore -L - /mnt^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H^H$
+xfsrestore: ERROR: no source file(s) specified
+xfsrestore: usage: xfsrestore [ -a <alt. workspace dir> ... ]
+                              [ -b <blocksize> ]
+                              [ -c <media change alert program>  ]
+                              [ -e (don't overwrite existing files) ]
+                              [ -f <source> ... ]
+                              [ -h (help) ]
+                              [ -i (interactive) ]
+                              [ -m (force usage of minimal rmt) ]
+                              [ -n <file> (restore only if newer than) ]
+                              [ -o (restore owner/group even if not root) ]
+                              [ -p <seconds between progress reports> ]
+                              [ -q <use QIC tape settings> ]
+                              [ -r (cumulative restore) ]
+                              [ -s <subtree> ... ]
+                              [ -t (contents only) ]
+                              [ -v <verbosity {silent, verbose, trace}> ]
+                              [ -w (use small tree window) ]
+                              [ -A (don't restore extended file attributes) ]
+                              [ -B (restore root dir owner/permissions) ]
+                              [ -D (restore DMAPI event settings) ]
+                              [ -E (don't overwrite if changed) ]
+                              [ -F (don't prompt) ]
+                              [ -I (display dump inventory) ]
+                              [ -J (inhibit inventory update) ]
+                              [ -K (force use of format 2 generation numbers) ]
+                              [ -L <session label> ]
+                              [ -O <options file> ]
+                              [ -Q (force interrupted session completion) ]
+                              [ -R (resume) ]
+                              [ -S <session id> ]
+                              [ -T (don't timeout dialogs) ]
+                              [ -X <excluded subtree> ... ]
+                              [ -Y <I/O buffer ring length> ]
+                              [ - (stdin) ]
+                              [ <destination> ]
+xfsrestore: Restore Status: ERROR
+xfsdump: using file dump (drive_simple) strategy
+xfsdump: version 3.1.7 (dump format 3.0)
+xfsdump: level 0 dump of lvm:/
+xfsdump: dump date: Sun Dec 10 10:58:14 2023
+xfsdump: session id: db774bee-6315-48b5-9b59-4fdd1c897a4c
+xfsdump: session label: ""
+xfsdump: ino map phase 1: constructing initial dump list
+xfsdump: ino map phase 2: skipping (no pruning necessary)
+xfsdump: ino map phase 3: skipping (only one dump stream)
+xfsdump: ino map construction complete
+xfsdump: estimated dump size: 887701120 bytes
+xfsdump: creating dump session media file 0 (media 0, file 0)
+xfsdump: dumping ino map
+xfsdump: dumping directories
+xfsdump: WARNING: write to stdio failed: 32 (Broken pipe)
+xfsdump: ending media file
+xfsdump: media file size 0 bytes
+xfsdump: dump size (non-dir files) : 0 bytes
+xfsdump: NOTE: dump interrupted: 0 seconds elapsed
+xfsdump: Dump Status: INTERRUPT
+^[]0;root@lvm:~^G[root@lvm ~]# xfsdump -J - /dev/VolGroup00/LogVol00 | xfsrestore -L - /mnt^H^H^H^H^H^H^H^H^[[1P^[[1@J
+xfsrestore: using file dump (drive_simple) strategy
+xfsrestore: version 3.1.7 (dump format 3.0)
+xfsdump: using file dump (drive_simple) strategy
+xfsdump: version 3.1.7 (dump format 3.0)
+xfsdump: level 0 dump of lvm:/
+xfsdump: dump date: Sun Dec 10 10:58:53 2023
+xfsdump: session id: ea02c806-e44b-4c36-bbf7-05ee297f01f3
+xfsdump: session label: ""
+xfsdump: ino map phase 1: constructing initial dump list
+xfsrestore: searching media for dump
+xfsdump: ino map phase 2: skipping (no pruning necessary)
+xfsdump: ino map phase 3: skipping (only one dump stream)
+xfsdump: ino map construction complete
+xfsdump: estimated dump size: 887701120 bytes
+xfsdump: creating dump session media file 0 (media 0, file 0)
+xfsdump: dumping ino map
+xfsdump: dumping directories
+xfsrestore: examining media file 0
+xfsrestore: dump description:
+xfsrestore: hostname: lvm
+xfsrestore: mount point: /
+xfsrestore: volume: /dev/mapper/VolGroup00-LogVol00
+xfsrestore: session time: Sun Dec 10 10:58:53 2023
+xfsrestore: level: 0
+xfsrestore: session label: ""
+xfsrestore: media label: ""
+xfsrestore: file system id: b60e9498-0baa-4d9f-90aa-069048217fee
+xfsrestore: session id: ea02c806-e44b-4c36-bbf7-05ee297f01f3
+xfsrestore: media id: 7611e866-bf01-4d8c-a131-d4002db9be8b
+xfsrestore: searching media for directory dump
+xfsrestore: reading directories
+xfsdump: dumping non-directory files
+xfsrestore: 2749 directories and 23868 entries processed
+xfsrestore: directory post-processing
+xfsrestore: restoring non-directory files
+
